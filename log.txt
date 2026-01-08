@@ -1,0 +1,19 @@
+[INFO] Server starting
+[INFO] Loading configuration
+[WARN] Configuration value 'CACHE_SIZE' not set, using default
+[INFO] Connecting to database
+[ERROR] Failed to connect to database: timeout
+[INFO] Retrying database connection
+[INFO] Database connection established
+[WARN] Disk usage at 85%
+[INFO] User 'alice' logged in
+[INFO] User 'bob' logged in
+[ERROR] Failed to write to log file
+[INFO] Server running
+[INFO] Health check passed
+[WARN] High memory usage detected
+[INFO] Scheduled job started
+[INFO] Scheduled job completed
+[ERROR] Unexpected EOF while reading request
+[INFO] Server shutting down
+[ANON] Anomalous log
