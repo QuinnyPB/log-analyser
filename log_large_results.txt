@@ -1,0 +1,47 @@
+Summary of log file 'C:/Users/Quinn/OneDrive/Desktop/Coding/python/log_analyser/log_large.txt'
+
+Warnings: 210,
+Infos: 704,
+Errors: 87,
+Anomalies: 6Top 10 busiest times:
+('22:01:', 25)
+('21:55:', 24)
+('22:17:', 24)
+('21:46:', 23)
+('21:51:', 23)
+('22:21:', 23)
+('22:25:', 23)
+('22:26:', 23)
+('21:42:', 22)
+('21:48:', 22)
+
+Total unique events = 19
+
+All event types/count:
+('Server running\n', 96)
+('Request processed successfully\n', 94)
+('User logged in\n', 93)
+('Scheduled job started\n', 91)
+('Cache refreshed\n', 85)
+('Scheduled job completed\n', 83)
+('Health check passed\n', 81)
+('User logged out\n', 81)
+('Retrying request\n', 52)
+('Configuration value missing, using default\n', 41)
+('Slow response detected\n', 41)
+('Disk usage high\n', 39)
+('Memory usage high\n', 37)
+('Unexpected EOF\n', 23)
+('Failed to connect to database\n', 18)
+('Permission denied\n', 16)
+('Null reference encountered\n', 16)
+('Timeout while processing request\n', 14)
+('Maintenance cycle initiated\n', 1)
+
+All Anomalies:
+J@^&QBDY H*()(@!JS) [ERROR] bBDodnIdn&@j *@73&*@*! *27hEH&2hS
+20EE-01-07 22:31:16 [INFO] Cache refreshed
+2021-01-07 22:EE:16 [INFO] Cache refreshed
+2024-01-07 22:11:16 [ANON] Cache refreshed
+rgh732qq80foh4u3e 29vn8vurc389d92
+3 f 3 r3 d3 e2 ds  3 f4 5 gf43f9 9f943j90f4 d32d32 d h32883dhd832 
