@@ -3,7 +3,8 @@ Summary of log file 'C:/Users/Quinn/OneDrive/Desktop/Coding/python/log_analyser/
 Warnings: 210,
 Infos: 704,
 Errors: 87,
-Anomalies: 6Top 10 busiest times:
+Anomalies: 6
+Top 10 busiest times:
 ('22:01:', 25)
 ('21:55:', 24)
 ('22:17:', 24)

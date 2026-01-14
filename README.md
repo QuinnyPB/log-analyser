@@ -1,11 +1,8 @@
-A Python CLI tool for parsing and analysing log files mimicking server information.
+A Python CLI tool for parsing and analysing log files. Analysis reveals Sums, Total counts, Maximums, Anomalous Logs, Busiest times, Total Unique Events.
 
-- Counts all types of entries
-- Aggregates events and timestamps
-- Records and removes anomalies
-- Includes pytests
+Run main.py to run program.
+python main.py
 
-To run program, run main.py
 To run test file run following command. Use flag '-s' for output:
 python -m pytest -s
 

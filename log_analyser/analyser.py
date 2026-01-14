@@ -8,8 +8,11 @@ from tkinter import messagebox
 tk.Tk().withdraw() # part of the import if you are not using other tkinter functions
 
 
-
+#
 class LogAnalyser:  
+  """
+  This class performs analysis of log files. If no argument is given 'filename', then a GUI window is used for file selection. Data format is [DATE, TIME, TYPE, EVENT]. Check README for more info.
+  """
   def __init__(self, filename=None):
     self.output_endpoint = io.StringIO()
     self.warns, self.infos, self.errors, self.anomalies, self.total_times, self.total_dates = 0, 0, 0, 0, 0, 0
@@ -110,7 +113,7 @@ class LogAnalyser:
       self.find_file()
         
     with open(self.filename, 'r') as file:
-      for line in file.readlines():
+      for line in file:
         components = self.parse_line(line)
         if not components:
           continue 
@@ -118,8 +121,8 @@ class LogAnalyser:
         date, time, type, event = "", "", "", ""
         try:
           date, time, type, event = components
-        except:
-          print(f'Could not assign to variables from log: {line}')   
+        except Exception as e:
+          print(f'Could not assign to variables from log: {line}, error={e}')   
         
         # check if components and date/time are valid, else record as anomaly and skip
         if not self.is_valid_date(date) or not self.is_valid_time(time) or not type or not event:
@@ -149,7 +152,7 @@ class LogAnalyser:
     
   def print_sums(self):
     # print all sums:
-    print(f"\nWarnings: {self.warns},\nInfos: {self.infos},\nErrors: {self.errors},\nAnomalies: {self.anomalies}")
+    print(f"\nWarnings: {self.warns},\nInfos: {self.infos},\nErrors: {self.errors},\nAnomalies: {self.anomalies}\n")
     
   def print_sorted_times(self):
     # sort the times by highest count
@@ -167,39 +170,45 @@ class LogAnalyser:
     for log in self.anomalous_events:
       print(f"Anomalous Log: {self.anomalous_events[log]} times, {log}", end="")
       
-  def sums_toString(self) -> str:
-    return f"\nWarnings: {self.warns},\nInfos: {self.infos},\nErrors: {self.errors},\nAnomalies: {self.anomalies}"
+  def to_string_sums(self) -> str:
+    return f"\nWarnings: {self.warns},\nInfos: {self.infos},\nErrors: {self.errors},\nAnomalies: {self.anomalies}\n"
       
-  def sorted_events_toString(self) -> str:
+  def to_string_sorted_events(self) -> str:
     output = f"Total unique events = {len(self.events)}\n\n"
     output += "All event types/count:\n"
     output += "\n".join(map(str, self.sorted_events)) + "\n\n"
     return output
   
-  def sorted_times_toString(self) -> str:
+  def to_string_sorted_times(self) -> str:
     output = "Top 10 busiest times:\n"
     output += "\n".join(map(str, self.sorted_times[:10])) + "\n\n"
     return output
   
-  def anomalous_logs_toString(self) -> str:
+  def to_string_anomalous_logs(self) -> str:
     return "All Anomalies:\n" + "".join(map(str, self.anomalous_events)) + "\n"
   
   def output_to_file(self):
+    """
+    Outputs data to .txt file
+    """
     output_filename = self.filename[:-4]+"_results.txt"
-    # output_filename_str = outp
-    try:
-      with open(output_filename, 'w+') as output_file:
-        output_file.write(f"Summary of log file '{self.filename}'\n")
-        output = self.sums_toString()
-        output += self.sorted_times_toString()
-        output += self.sorted_events_toString()
-        output += self.anomalous_logs_toString() 
+    with open(output_filename, 'w+') as output_file:
+      output_file.write(f"Summary of log file '{self.filename}'\n")
+      try:
+          output = self.to_string_sums()
+          output += self.to_string_sorted_times()
+          output += self.to_string_sorted_events()
+          output += self.to_string_anomalous_logs() 
+      except Exception as e:
+        print(f'ERROR: Could not convert data to strings: output={output}, error={e}')
+
+      try:
         output_file.write(output)
         messagebox.showinfo(title="Analysis complete", message=f"Results have been stored in {output_filename}")
-    except:
-      print(f'ERROR: Could not write data to output file {str(output_filename)}')
+      except Exception as e:
+        print(f'ERROR: Could not write data to file! error={e}')
       
-  
+
 def select_file() -> str:
   allowed_file_types = (('Text Files', '*.txt'), ('All Files', '*.*'))
   choice = askopenfilename(
